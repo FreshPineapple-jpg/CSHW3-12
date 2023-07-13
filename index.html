@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<head>
+    <link href="./index.css"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap" rel="stylesheet">
+    <!-- Code by Angela Delise
+  https://codepen.io/angeladelise/pen/YzXLdyq
+    Video Tutorial: https://www.youtube.com/watch?v=68O6eOGAGqA -->
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Step 1: Add event listeners to buttons
+      const buttons = document.querySelectorAll('.container > div');
+      buttons.forEach(button => {
+        button.addEventListener('click', buttonClick);
+      });
+
+      // Step 2: Retrieve the display element
+      const display = document.getElementById('dis');
+
+      // Step 3: Implement button functionality
+      function buttonClick(event) {
+        const button = event.target;
+        const buttonText = button.textContent;
+
+        // Handle different button actions based on the text content
+        switch (buttonText) {
+          case 'AC':
+            // Clear the display
+            display.textContent = '0';
+            break;
+          case '=':
+            // Evaluate the expression and update the display
+            try {
+              const result = eval(display.textContent.replace('×', '*').replace('÷', '/'));
+              display.textContent = result.toFixed(2); // Adjust the precision as needed
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          case 'x!':
+            // Calculate factorial of the result and update the display
+            try {
+              const num = eval(display.textContent);
+              const result = factorial(num);
+              display.textContent = result.toFixed(2);
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          case '%':
+            // Calculate the percentage of the result and update the display
+            try {
+              const result = (eval(display.textContent))/100;
+              display.textContent = result.toFixed(2);
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          case 'sin':
+            // Calculate the sine of the result in radians and update the display
+            try {
+              const result = Math.sin(eval(display.textContent));
+              display.textContent = result.toFixed(2);
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          case 'ln':
+            // Calculate the natural logarithm of the result and update the display
+            try {
+              const result = Math.log(eval(display.textContent));
+              display.textContent = result.toFixed(2);
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          case 'cos':
+            // Calculate the cosine of the result in radians and update the display
+            try {
+              const result = Math.cos(eval(display.textContent));
+              display.textContent = result.toFixed(2);
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          case 'log':
+            // Calculate the logarithm base 10 of the result and update the display
+            try {
+              const result = Math.log10(eval(display.textContent));
+              display.textContent = result.toFixed(2);
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          case 'tan':
+            // Calculate the tangent of the result in radians and update the display
+            try {
+              const result = Math.tan(eval(display.textContent));
+              display.textContent = result.toFixed(2);
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          case '√':
+            // Calculate the square root of the result and update the display
+            try {
+              const result = Math.sqrt(eval(display.textContent));
+              display.textContent = result.toFixed(2);
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          case 'EXP':
+            // Enter a number in exponential form
+            display.textContent += 'E';
+            break;
+          case 'x^y':
+            // Calculate the result of exponentiation and update the display
+            display.textContent += '**';
+            break;
+          default:
+            // Append the button's text content to the display
+            if (display.textContent === '0' || display.textContent === 'Error') {
+              display.textContent = buttonText;
+            } else {
+              display.textContent += buttonText;
+            }
+            break;
+        }
+      }
+        // Custom factorial function
+      function factorial(num) {
+        if (num < 0) {
+          throw new Error('Factorial of a negative number is undefined.');
+        }
+        if (num === 0 || num === 1) {
+          return 1;
+        }
+        let result = 1;
+        for (let i = 2; i <= num; i++) {
+          result *= i;
+        }
+        return result;
+      }
+    });
+
+    </script>
+  
+  </head>
+  
+  <div class="container">
+    <div id="dis">0</div>
+
+    <div id="deg">Deg</div>
+    <div id="fac">x!</div>
+    <div id="left_">(</div>
+    <div id="right_">)</div>
+    <div id="per">%</div>
+    <div id="ac">AC</div>
+    
+    <div id="sin">sin</div>
+    <div id="ln">ln</div>
+    <div id="seven">7</div>
+    <div id="eight">8</div>
+    <div id="nine">9</div>
+    <div id="div">÷</div>
+    
+    <div id="cos">cos</div>
+    <div id="log">log</div>
+    <div id="four">4</div>
+    <div id="five">5</div>
+    <div id="six">6</div>
+    <div id="mul">×</div>
+    
+    <div id="tan_">tan</div>
+    <div id="sqrt">√</div>
+    <div id="one">1</div>
+    <div id="two">2</div>
+    <div id="three">3</div>
+    <div id="sub_">-</div>
+    
+    <div id="EXP">EXP</div>
+    <div id="pow">x^y</div>
+    <div id="zero_">0</div>
+    <div id="period">.</div>
+    <div id="equal">=</div>
+    <div id="add_">+</div>
+ 
+
+    <!--<div id="content2">Content2</div>-->
+    <!--<div id="content3">Content3</div>-->
+
+  </div>
+  
